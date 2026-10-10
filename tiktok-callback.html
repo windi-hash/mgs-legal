@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Login TikTok - MGS Autopost Studio</title>
+<style>body{font-family:Arial,sans-serif;max-width:720px;margin:48px auto;padding:0 16px;line-height:1.6;color:#222}a{color:#c81e28}
+#code{font-family:monospace;word-break:break-all;background:#f3f3f3;border:1px solid #ccc;border-radius:6px;padding:12px;margin:12px 0}
+button{background:#c81e28;color:#fff;border:0;border-radius:6px;padding:10px 16px;font-size:15px;cursor:pointer}
+.err{color:#c81e28}</style>
+</head>
+<body>
+<h1>Login TikTok selesai</h1>
+<div id="box"></div>
+<p><a href="tiktok.html">MGS Autopost Studio for TikTok</a></p>
+<script>
+var p=new URLSearchParams(location.search),b=document.getElementById('box');
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+if(p.get('error')){b.innerHTML='<p class="err">Login dibatalkan atau gagal: '+esc(p.get('error'))+' '+esc(p.get('error_description')||'')+'</p>';}
+else if(p.get('code')){
+b.innerHTML='<p>Salin kode di bawah, lalu tempel ke workflow <b>TikTok - tukar kode</b> di GitHub. Kode hanya bisa dipakai sekali dan cepat kedaluwarsa, jadi langsung dipakai. Jangan kirim kode ini lewat chat.</p><div id="code"></div><button id="cp">Salin kode</button> <span id="ok"></span><p><i>Copy the code above and paste it into the "TikTok - tukar kode" GitHub workflow. It is single-use and expires quickly.</i></p>';
+document.getElementById('code').textContent=p.get('code');
+document.getElementById('cp').onclick=function(){navigator.clipboard.writeText(p.get('code')).then(function(){document.getElementById('ok').textContent='Tersalin ✓'})};
+}else{b.innerHTML='<p>Halaman ini adalah alamat redirect login TikTok untuk MGS Autopost Studio. / This page is the TikTok login redirect address for MGS Autopost Studio.</p>';}
+</script>
+</body>
+</html>
